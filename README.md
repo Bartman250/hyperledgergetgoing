@@ -5,7 +5,7 @@
 The hyperledger project and community has grown significantly since the beginning of the year.
 It is made of many technologies and there is a vast amount of documentation.
 If you are just starting out as a blockchain developer, then this can be as 
-overwhelming as coming to london for the first time having previously lived in a
+overwhelming as coming to London for the first time having previously lived in a
 village all your life.
 
 So, this is my attempt to get your up and running with hyperledger fabric, so that 
@@ -13,18 +13,19 @@ you can understand, write, deploy and run smart contracts.
 
 There are many paths to doing this, but I have picked the one that requires
 the least amount of steps and techical understanding.
-Having said that, there are still a lot of steps and I have attempted to make these
+
+Having said that, there are still a lot of steps. I have attempted to make these
 as detailed and accurate as possible so that there is no hidden magic or assumptions
 about the knowledge of the developer.
 
-In the unlikely event that you find errors or difficults with these instructions, please
+In the unlikely event that you find errors or difficulties with these instructions, please
 feel free to raise an issue - comments, suggestions and insults will be accepted
 with humility !
 
-Note: there are actually two blockchains within hyperledger at the time of writing this,
+Note: There are actually two blockchains within hyperledger at the time of writing this,
 namely fabric and sawtooth wave. This example is for fabric.
 
-Note2: this example assumes you are connected to the internet - one part requires
+Note2: This example assumes you are connected to the internet - one part requires
 quite a big download for the first time, so check that your kids are not in a crucial
 game of COD before you hit the button.
 
@@ -36,7 +37,7 @@ to some of the commands.
 
 Software is changing all the time - hyperledger is under continous development -
 so I have listed what you need to install and which versions I had installed
-when I put this together. You will probably 
+when I put this together.  
 
 The version of hyperledger fabric is from the following location:
 
@@ -63,16 +64,17 @@ Virtual Box [get it here](https://www.virtualbox.org)
 (I used Version 5.0.16 r105871)
 
 git [get it here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+(latest version will be fine)
 
 Note: a large part of the action happens in a virtual machine inside virtual box - this
 will download all the software and dependancies it needs.
 
 ## Set up your 'go' path
 
-The go language (golang for short), requires you to have an environment
+The go language (golang for short) requires you to have an environment
 variable that points to where all your 'go' code lives. Golang is also quite fussy
 about where you put your code, so it's worth following my example carefully to avoid
-what I call 'gobang' where it just goes horribly wrong.
+what I call 'gobang' where it all just goes horribly wrong.
 
 Open a terminal and create a directory where you want to put all the code for the example.
 This is what I did:  
@@ -84,6 +86,7 @@ mkdir gopath
 
 cd gopath
 ```
+(Note: 'WorkStuff' is my own directory, feel free to create your own!)
 
 Now create the environment variable:
 
@@ -117,13 +120,12 @@ Check you have a ‘fabric’ directory
 ls -l
 ```
 
-
 ## Set up the virtual box machine
 
-Depending on you wi-fi this can take about 30 minutes the first time you run this,
-so once you've typed the following, you can get yourself a coffee, beer or salty popcorn (or all three)
+Depending on you wi-fi this can take about 30 minutes the first time you run this.
+So, once you've typed the following, you can get yourself a coffee, beer or salty popcorn (or all three)
 
-switch to the devenv directory and bring up the virtual machine, that we used to run the fabric peer.
+Switch to the devenv directory and bring up the virtual machine, that we use to run the fabric peer.
 
 ```
 cd fabric/devenv
@@ -169,7 +171,7 @@ Last login: Sat Sep  3 13:57:43 2016 from 10.0.2.2
 Now it’s time to build to code.
 
 Go to the fabric directory on the virtual machine
-(note: this is shared between the virtual machine and your Mac)
+(note: this is shared between the virtual machine and your Mac - have a look at the 'VagrantFile' file and you can see where this is set up)
 
 ```
 cd /opt/gopath/src/github.com/hyperledger/fabric/
@@ -184,7 +186,7 @@ make
 
 Note: This also takes a while as it builds the code and runs a bunch of tests.
 
-## Make our own copy of the chaincode
+## Make your own copy of the chaincode
 
 Take a copy of chain code_example02
 
@@ -217,8 +219,8 @@ go test
 
 ## Prepare to start the hyperledger fabric services.
 
-You will now several terminals to run the fabric services all of these will need
-to be logged into the virtual box vm.
+You will now use several terminals to run the fabric services. All of these will need
+to be logged into the virtual box virtual machine (vm for short).
 
 
 ## Start the member service.
@@ -255,13 +257,17 @@ Note: we're setting debug logging so you can see what the peer is doing.
 
 ## Run the chaincode to deploy it to the peer
 
-As above, open another terminal, log into into the vm and switch to the fabric directory
+As above, open another terminal, log into into the vm.
 
-Now start the peer:
+switch to our chaincode directory and start it running.
 
 ```
+cd $GOPATH/src/github.com/hyperledger/fabric/examples/chaincode/go/chaincode_getgoing
+
 CORE_CHAINCODE_ID_NAME=gg CORE_PEER_ADDRESS=0.0.0.0:7051 ./chaincode_getgoing
 ```
+
+note: 'gg' is the name we will use to reference out chaincode in the command line and later the javascript example.
 
 ## Run a couple of chaincode tests on the vm
 
