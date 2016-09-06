@@ -282,7 +282,7 @@ peer chaincode deploy -n gg -c '{"function":"init", "args":["a", "100", "b", "20
 Now lets run the 'invoke' function on the chaincode to move £10 from account 'a' to 'b'
 
 ```
-peer chaincode invoke -l golang -n gg -c '{"function":"invoke","args":["a","b","10"]}’
+peer chaincode invoke -l golang -n gg -c '{"function":"invoke","args":["a","b","10"]}'
 ```
 
 We can now check b's balance using the query call:
