@@ -320,7 +320,7 @@ Install the dependancies (you only need to do this once)
 npm install
 ```
 
-## Run out first step scrpt interactively
+## Run our first step script interactively
 
 ```
 npm start
